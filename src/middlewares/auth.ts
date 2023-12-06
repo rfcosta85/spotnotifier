@@ -18,11 +18,18 @@ export function AuthMiddleware(
   }
 
   const [, token] = authorization.split(" ");
+  const secretKey = process.env.TOKENHex;
 
   try {
-    const decoded = verify(token, "secret");
-    const { id } = decoded as TokenPayload;
-    req.user_id = id;
-    next();
-  } catch (error) {}
+    if (secretKey) {
+      const decoded = verify(token, secretKey);
+      const { id } = decoded as TokenPayload;
+      req.user_id = id;
+      next();
+    } else {
+      throw new Error("Secret key is undefined");
+    }
+  } catch (error) {
+    // Handle the error here
+  }
 }
