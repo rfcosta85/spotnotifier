@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tsc && node dist/test/test.js",
-    "dev": "ts-node-dev --respawn --transpile-only --files src/server.ts"
+    "start": "ts-node-dev --respawn --transpile-only --files src/server.ts"
   },
   "keywords": [],
   "author": "Rodrigo Costa",
